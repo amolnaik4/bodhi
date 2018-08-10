@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% if session['admin'] == 'yes' %}
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/add_admin">Add Admin</a>
+            <a class="navbar-item " href="/flag">Flag</a>
+            <a class="navbar-item " href="/admin_messages">Messages</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    
+{% else %}
+
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/send_message">Message Board</a>
+            <a class="navbar-item " href="/add_admin_demo">Vulnerable Form</a>
+            <a class="navbar-item " href="/upload">Upload PoC</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+
+{% endif %}	
+
+<script type="text/javascript">
+	function toJSONString( form ) {
+		var obj = {};
+		var elements = form.querySelectorAll( "input, select, textarea" );
+		for( var i = 0; i < elements.length; ++i ) {
+			var element = elements[i];
+			var name = element.name;
+			var value = element.value;
+
+			if( name ) {
+				obj[ name ] = value;
+			}
+		}
+
+		return JSON.stringify( obj );
+	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+    $("#formid").submit(function(event){
+        event.preventDefault();
+        formData = toJSONString(document.getElementById('formid'))
+        
+        $.post({
+          // type: "POST",
+          url: '/add_admin',
+          data: formData,
+          // success: function(){},
+          // dataType: "json",
+          contentType : "application/json"
+        });
+    });
+});
+</script>
+
+    <br>
+	<div class="column is-half">
+	<h1 class="title">Add Admin user</h1>
+	<form id="formid">
+		
+		<div class="field">
+			{{ form.username.label(class="label") }}
+			<p class="control is-expanded">
+				
+
+				{% if form.username.errors %}
+					{% for error in form.username.errors %}
+						<p class="help is-danger">{{ error }}</p>
+					{% endfor %}
+				{% endif %}
+
+				{{ form.username(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.password.label(class="label") }}
+			<p class="control is-expanded">
+				
+
+				{% if form.password.errors %}
+					{% for error in form.password.errors %}
+						<p class="help is-danger">{{ error }}</p>
+					{% endfor %}
+				{% endif %}
+
+				{{ form.password(class="input") }}
+			</p>
+		</div>
+		<input type="hidden" name="isAdmin" value="yes">
+		<br>
+		{{ form.submit(class="button is-primary") }}
+	</form>
+</div>
+</section>
+</div>
+
+{% endblock %}

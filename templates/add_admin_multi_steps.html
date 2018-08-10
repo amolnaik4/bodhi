@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% if session['admin'] == 'yes' %}
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/add_admin">Add Admin</a>
+            <a class="navbar-item " href="/flag">Flag</a>
+            <a class="navbar-item " href="/admin_messages">Messages</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    
+{% else %}
+
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/send_message">Message Board</a>
+            <a class="navbar-item " href="/add_admin_demo">Vulnerable Form</a>
+            <a class="navbar-item " href="/upload">Upload PoC</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+
+{% endif %}	
+
+	<br>
+	<div class="column is-half">
+	<h1 class="title">Add Admin user</h1>
+			{% if step == 'one' %}
+			<form method="POST" action="/add_admin">
+
+				<div class="field">
+					<label class="label" for="username">Username</label>
+					<p class="control is-expanded">
+						<input class="input" id="username" name="username" type="text" value="">
+					</p>
+				</div>
+				<div class="field">
+					<label class="label" for="password">Password</label>
+					<p class="control is-expanded">
+						<input class="input" id="password" name="password" type="password" value="">
+					</p>
+				</div>
+				<input type="hidden" name="step" value="two">
+				<br>
+				<input type="submit" class="button is-primary" value="Next">
+			</form>
+			
+			{% elif step == "two" %}
+			<form method="POST" action="/add_admin">
+				<div class="field">
+					<label class="label" for="selection">Choose Admin or not:</label>
+                    <p class="control">
+                       <span class="select">
+                          <select name="isAdmin" id="selection">
+                             <option value="yes">YES</option>
+                             <option value="no">NO</option>
+                          </select>
+                       </span>
+                    </p>
+                 </div>
+				
+				<input type="hidden" name="step" value="final">
+				<input type="hidden" name="username" value="{{ user }}">
+				<input type="hidden" name="password" value="{{ pwd }}">
+				<br>
+				<input type="submit" class="button is-primary" value="Add Admin">
+				
+			</form>
+			{% elif step == "final" %}
+				<div class="notification is-success">{{ msg }}</div>
+			{% endif %}
+		</div>
+</section>
+</div>
+{% endblock %}

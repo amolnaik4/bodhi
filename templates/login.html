@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="columns">
+<div class="column">
+<section class="section">
+	<h1 class="title">Log In</h1>
+	<form id="login-form" method="POST" action="/login">
+		{{ form.hidden_tag() }}
+		<div class="field">
+			{{ form.username.label(class="label") }}
+			<p class="control is-expanded">
+				
+
+				{% if form.username.errors %}
+					{% for error in form.username.errors %}
+						<p class="help is-danger">{{ error }}</p>
+					{% endfor %}
+				{% endif %}
+
+				{{ form.username(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.password.label(class="label") }}
+			<p class="control is-expanded">
+				
+
+				{% if form.password.errors %}
+					{% for error in form.password.errors %}
+						<p class="help is-danger">{{ error }}</p>
+					{% endfor %}
+				{% endif %}
+
+				{{ form.password(class="input") }}
+			</p>
+		</div>
+		<br>
+		{{ form.submit(class="button is-primary") }}
+	</form>
+	{% if msg %}
+	
+		<div class="notification is-danger">{{ msg }}</div>
+	
+	{% endif %}
+</section>
+</div>
+</div>
+
+{% endblock %}

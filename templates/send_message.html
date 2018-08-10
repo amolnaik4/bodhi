@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/send_message">Message Board</a>
+            <a class="navbar-item " href="/add_admin_demo">Vulnerable Form</a>
+            <a class="navbar-item " href="/upload">Upload PoC</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    <br>
+	<div class="content">
+		<h1>Message Board</h1>
+		<form method="POST" action="/send_message">
+			{{ form.hidden_tag() }}
+			<div class="field">
+				{{ form.msg.label(class="label") }}
+				<p class="control is-expanded">
+
+					{% if form.msg.errors %}
+						{% for error in form.msg.errors %}
+							<p class="help is-danger">{{ error }}</p>
+						{% endfor %}
+					{% endif %}
+
+					{{ form.msg(class="input") }}
+				</p>
+			</div>
+			<br>
+			{{ form.submit(class="button is-primary") }}
+		</form>
+		{% if msg %}
+	
+			<div class="notification is-success">{{ msg }}</div>
+		
+		{% endif %}
+	</div>
+</section>
+</div>
+
+{% endblock %}

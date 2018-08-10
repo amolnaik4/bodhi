@@ -1,0 +1,60 @@
+<html>
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/bulmaswatch.min.css') }}" rel="stylesheet">
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+</head>
+<body class="theme-page">
+  <nav class="navbar">
+      <div class="container">
+        <a class="navbar-item" href="/">
+          <h1 class="title is-3 is-primary">Bodhi - Client-Side Vulnerability Playground</h1>
+        </a>
+      </div>
+  </nav>
+<div class="columns">
+  <div class="column is-3">
+    <aside class="menu">
+      <ul class="menu-list">
+        <li>
+          <a class="subtitle" href="/csrf">CSRF</a>
+          <ul>
+            <li>
+              <a class="subtitle" href="/info/csrf1">GET CSRF</a>
+            </li>
+            <li>
+              <a class="subtitle" href="/info/csrf2">POST CSRF</a>
+            </li>
+            <li>
+              <a class="subtitle" href="/info/csrf3">JSON Based CSRF</a>
+            </li>
+            <li>
+              <a class="subtitle" href="/info/csrf4">XML Based CSRF</a>
+            </li>
+            <li>
+              <a class="subtitle" href="/info/csrf5">Multi-Step CSRF</a>
+            </li>
+            <li>
+              <a class="subtitle" href="/info/csrf6">Token Hijacking</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+  </div>
+
+
+        {% block content %}
+        {% endblock %}
+        
+</div>
+ <footer class="footer">
+  <div class="has-text-centered">
+    <p>
+      <strong>Bodhi</strong> by <a href="https://twitter.com/amolnaik4">AMol NAik</a>
+      <br>Checkout Source at <a href="http://github.com/amolnaik4/bodhi">Github</a>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

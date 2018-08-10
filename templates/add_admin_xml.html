@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% if session['admin'] == 'yes' %}
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/add_admin">Add Admin</a>
+            <a class="navbar-item " href="/flag">Flag</a>
+            <a class="navbar-item " href="/admin_messages">Messages</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    
+{% else %}
+
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/send_message">Message Board</a>
+            <a class="navbar-item " href="/add_admin_demo">Vulnerable Form</a>
+            <a class="navbar-item " href="/upload">Upload PoC</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+{% endif %}
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var soapRequest = '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/"><Body><AddAdminUser xmlns="tns"><username>INSERT1</username><password>INSERT2</password><isAdmin>yes</isAdmin></AddAdminUser></Body></Envelope>'
+    $("#formid").submit(function(event){
+        event.preventDefault();
+        soapRequest = soapRequest.replace('INSERT1',document.getElementById('username').value)
+        soapRequest = soapRequest.replace('INSERT2',document.getElementById('password').value)
+        
+        $.post({
+          url: '/add_admin',
+          data: soapRequest,
+          contentType : "application/xml"
+        });
+    });
+});
+</script>
+	<br>
+	<div class="column is-half">
+	<h1 class="title">Add Admin user</h1>
+	<form id="formid">
+		
+		<div class="field">
+			{{ form.username.label(class="label") }}
+			<p class="control is-expanded">
+				
+
+				{% if form.username.errors %}
+					{% for error in form.username.errors %}
+						<p class="help is-danger">{{ error }}</p>
+					{% endfor %}
+				{% endif %}
+
+				{{ form.username(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.password.label(class="label") }}
+			<p class="control is-expanded">
+				
+
+				{% if form.password.errors %}
+					{% for error in form.password.errors %}
+						<p class="help is-danger">{{ error }}</p>
+					{% endfor %}
+				{% endif %}
+
+				{{ form.password(class="input") }}
+			</p>
+		</div>
+		<br>
+		{{ form.submit(class="button is-primary") }}
+	</form>
+</div>
+</section>
+</div>
+
+{% endblock %}

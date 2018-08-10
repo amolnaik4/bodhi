@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="column">
+<section class="section">
+	<div class="content">
+		<h2>Cross-Site Request Forgery (CSRF)</h2><br>
+		<p>Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated. With a little help of social engineering (such as sending a link via email or chat), an attacker may trick the users of a web application into executing actions of the attacker's choosing. For more information, please refer <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">this</a>.</p>
+
+		<p>The current release of this playground focusses on learning various types of Cross-Site Request Forgery (CSRF) attacks.</p>
+
+		<h3>Scenario</h3><br>
+		<p>The application has 2 roles i.e Admin user & normal user. Admin user can create other admin users and also can read the flag. The form to create new admin user is vulnerable to CSRF.</p>
+
+		<p>The objective is to expoit the CSRF vulnerability to create new admin user, log in using newly created admin credentials & read the flag.</p>
+		<p>The application provides 2 ways to exploit CSRF vulnerability:</p><br>
+		<h4>Using Cross-Site Scripting (XSS):</h4>
+		<p>The application provides functionality to send messages to Admin user. The page where these messages are rendered, is vulnerable to Stored Cross-Site Scripting (XSS) vulnerability. Admin user will always reading the messages sent to him while logged in into the application.</p><br>
+
+		<h4>Using Different Site:</h4>
+		<p>Normal user can upload the POC page to a different site (in this case, another server running on post 8000). Admin user will visit this page while logged in into application.</p><br>
+
+		<h3>Test Accounts</h3>
+		<pre>
+		GET CSRF              - testuser1/testpass1
+		POST CSRF             - testuser2/testpass2
+		JSON CSRF             - testuser3/testpass3
+		XML CSRF              - testuser4/testpass4
+		Multi-Stage CSRF      - testuser5/testpass5
+		CSRF Token Hijacking  - testuser6/testpass6</pre>
+
+		
+	</div>
+</section>
+</div>
+
+{% endblock %}

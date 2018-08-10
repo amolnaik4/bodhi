@@ -1,0 +1,9 @@
+<html>
+	<body>
+		<h1>Admin Message Board</h1>
+		<pre>Here goes all messages from DB</pre>
+			{% for message in messages %}
+				<pre>{{message.sender}} : {{message.msg | safe}}</pre>
+			{% endfor %}
+	</body>
+</html>

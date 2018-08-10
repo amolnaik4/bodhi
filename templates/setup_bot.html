@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="column is-half">
+<section class="section">
+	<div class="content">
+		<h1 class="title">Setup Bot</h1>
+		<form method="POST" action="/bot">
+			<div class="field">
+				<label class="label" for="ip">IP Address of Host Machine</label>
+				<p class="control is-expanded">
+					<input class="input" id="ip" name="ip" type="text" value="">
+				</p>
+			</div>
+			<br>
+			<input type="submit" class="button is-primary" value="Add IP">
+		</form>
+	</div>
+</section>
+</div>
+
+{% endblock %}
