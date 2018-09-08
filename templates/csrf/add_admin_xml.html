@@ -28,7 +28,7 @@
          <div class="navbar-start">
             <a class="navbar-item " href="/home">Home</a>
             <a class="navbar-item " href="/send_message">Message Board</a>
-            <a class="navbar-item " href="/add_admin_demo">Vulnerable Form</a>
+            <a class="navbar-item " href="/add_admin">Vulnerable Form</a>
             <a class="navbar-item " href="/upload">Upload PoC</a>
          </div>
 
@@ -91,6 +91,9 @@
 		<br>
 		{{ form.submit(class="button is-primary") }}
 	</form>
+	{% if msg %}
+		<div class="notification is-success">{{ msg }}</div>
+	{% endif %}
 </div>
 </section>
 </div>

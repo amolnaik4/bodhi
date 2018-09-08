@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/send_message">Message Board</a>
+            <a class="navbar-item " href="/add_admin">Vulnerable Form</a>
+            <a class="navbar-item " href="/upload">Upload PoC</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    <br>
+	<div class="content">
+		<h1>Upload PoC File</h1>
+		<br>
+		{% if msg %}
+	
+			<div class="notification is-success">{{ msg }}</div>
+		
+		{% endif %}
+		<form id="login-form" method="POST" action="/upload" enctype="multipart/form-data">
+			<div class="field">
+	            <div class="file">
+	               <label class="file-label">
+	               <input class="file-input" type="file" name="file">
+	               <span class="file-cta">
+	               <span class="file-icon">
+	               <i class="fa fa-upload"></i>
+	               </span>
+	               <span class="file-label">
+	               Choose a file…
+	               </span>
+	               </span>
+	               </label>
+	            </div>
+	         </div>
+	         <br>
+            <input class="button is-primary" type="submit" value="Upload">
+		</form>
+	</div>
+</section>
+</div>
+
+{% endblock %}

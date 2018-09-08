@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if session['admin'] == 'yes' %}
+
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/update_user">Update User</a>
+            <a class="navbar-item " href="/flag2">Flag</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    
+{% else %}
+
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/update_user">Vulnerable Page</a>
+            <a class="navbar-item " href="/upload2">Upload PoC</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+
+{% endif %}
+
+<br>
+	<div class="column is-half">
+	<h1 class="title">Update User to Admin</h1>
+	<form method="POST" action="/update_user">
+		{{ form.hidden_tag() }}
+
+		<div class="field">
+			{{ form.username.label(class="label") }}
+			{{ form.username(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			<p class="control">
+				<label class="radio">
+					<input type="radio" name="isAdmin" value="yes"> YES
+				</label>
+				<label class="radio">
+					<input type="radio" name="isAdmin" value="no"> NO
+				</label>
+			</p>
+		</div>
+		<br>
+		{{ form.submit(class="button is-primary") }}
+		
+	</form>
+	{% if msg %}
+		<div class="notification is-success">{{ msg }}</div>
+	{% endif %}
+</div>
+</section>
+</div>
+
+{% endblock %}

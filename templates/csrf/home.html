@@ -19,9 +19,14 @@
          </div>
       </div>
     </nav>
-    
+    <br>
+    <div class="content">
+		<h2>Hello Admin</h2>
+		<p>Welcome !!</p>
+	</div>
+</section>
+</div>	
 {% else %}
-
 <div class="column">
 <section class="section">
 	<nav class="navbar ">
@@ -29,7 +34,7 @@
          <div class="navbar-start">
             <a class="navbar-item " href="/home">Home</a>
             <a class="navbar-item " href="/send_message">Message Board</a>
-            <a class="navbar-item " href="/add_admin_demo">Vulnerable Form</a>
+            <a class="navbar-item " href="/add_admin">Vulnerable Form</a>
             <a class="navbar-item " href="/upload">Upload PoC</a>
          </div>
 
@@ -38,48 +43,19 @@
          </div>
       </div>
     </nav>
-
-{% endif %}	
-
-	<br>
-	<div class="column is-half">
-	<h1 class="title">Add Admin user</h1>
-	<form method="POST" action="/add_admin">
-		
-		<div class="field">
-			{{ form.username.label(class="label") }}
-			<p class="control is-expanded">
-				
-
-				{% if form.username.errors %}
-					{% for error in form.username.errors %}
-						<p class="help is-danger">{{ error }}</p>
-					{% endfor %}
-				{% endif %}
-
-				{{ form.username(class="input") }}
-			</p>
-		</div>
-		<div class="field">
-			{{ form.password.label(class="label") }}
-			<p class="control is-expanded">
-				
-
-				{% if form.password.errors %}
-					{% for error in form.password.errors %}
-						<p class="help is-danger">{{ error }}</p>
-					{% endfor %}
-				{% endif %}
-
-				{{ form.password(class="input") }}
-			</p>
-		</div>
-		<input type="hidden" name="isAdmin" value="yes">
-		<br>
-		{{ form.submit(class="button is-primary") }}
-	</form>
-</div>
+    <br>
+	<div class="content">
+		<h2>Hello User</h2>
+		<p><strong>{{ chall_data.title }}</strong> vulnerability</p><br>
+        <h4>Objective:</h4>
+        <p>Create a new admin user by exploiting CSRF vulnerability demonstrated in "Vulnerable Form" and read the flag.</p><br>
+		<h4>Attack:</h4>	      	
+		<a class="button is-primary" href="/send_message">Attack with XSS</a>
+		<a class="button is-primary" href="/upload">Attack with Page</a>
+	</div>
 </section>
 </div>
+
+{% endif %}		
 
 {% endblock %}

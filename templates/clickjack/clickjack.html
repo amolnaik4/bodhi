@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="column">
+<section class="section">
+	<div class="content">
+		<h2>ClickJacking</h2><br>
+		<p>Clickjacking, also known as a "UI redress attack", is when an attacker uses multiple transparent or opaque layers to trick a user into clicking on a button or link on another page when they were intending to click on the the top level page. Thus, the attacker is "hijacking" clicks meant for their page and routing them to another page, most likely owned by another application, domain, or both. For more information, please refer <a href="https://www.owasp.org/index.php/Clickjacking">this</a>.</p>
+
+		<p>Bodhi focuses on two types of clickjacking attacks: Single click & Double click.</p>
+
+		<h3>Scenario</h3><br>
+		<p>The application has 2 roles i.e Admin user & normal user. Admin user can update existing normal user to Admin. This update user page is vulnerable to clickjacking.</p>
+
+		<p>The objective is to expoit the Clickjacking vulnerability to update existing normal user to Admin user, log in using updated admin user credentials & read the flag.</p>
+
+		<h3>Exploitation</h3><br>
+		<p>Create a clickjacking PoC and upload to the attacker server (in this case, another server running on post 8000) using "upload" page. Admin user will visit PoC page while authenticated to the application and will click the buttons on the page. For creating PoC, you can refer <a href="http://amolnaik4.blogspot.com/2011/09/remove-google-books-with-clickjacking.html">this</a> blogpost.</p>
+
+		<h4>Note:</h4>
+		<pre>Admin user clicks buttons with specific IDs. For single click, button ID should be <strong>"button1"</strong>. 
+For double click, button IDs should be <strong>"button1"</strong> & <strong>"button2"</strong>.</pre>
+		
+
+		<h3>Test Accounts</h3>
+		<pre>
+		Single Click          - testuser7/testpass7
+		Double Click          - testuser8/testpass8</pre>
+
+		
+	</div>
+</section>
+</div>
+
+{% endblock %}

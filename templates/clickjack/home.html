@@ -9,9 +9,8 @@
 		<div class="navbar-menu">
          <div class="navbar-start">
             <a class="navbar-item " href="/home">Home</a>
-            <a class="navbar-item " href="/add_admin">Add Admin</a>
-            <a class="navbar-item " href="/flag">Flag</a>
-            <a class="navbar-item " href="/admin_messages">Messages</a>
+            <a class="navbar-item " href="/update_user">Update User</a>
+            <a class="navbar-item " href="/flag2">Flag</a>
          </div>
 
          <div class="navbar-end">
@@ -33,9 +32,8 @@
 		<div class="navbar-menu">
          <div class="navbar-start">
             <a class="navbar-item " href="/home">Home</a>
-            <a class="navbar-item " href="/send_message">Message Board</a>
-            <a class="navbar-item " href="/add_admin_demo">Vulnerable Form</a>
-            <a class="navbar-item " href="/upload">Upload PoC</a>
+            <a class="navbar-item " href="/update_user">Vulnerable Page</a>
+            <a class="navbar-item " href="/upload2">Upload PoC</a>
          </div>
 
          <div class="navbar-end">
@@ -48,14 +46,13 @@
 		<h2>Hello User</h2>
 		<p><strong>{{ chall_data.title }}</strong> vulnerability</p><br>
         <h4>Objective:</h4>
-        <p>Create a new admin user by exploiting CSRF vulnerability demonstrated in "Vulnerable Form" and read the flag.</p><br>
+        <p>Exploit clickjacking vulnerability to update yourself to Admin user & read the flag.</p><br>
 		<h4>Attack:</h4>	      	
-		<a class="button is-primary" href="/send_message">Attack with XSS</a>
 		<a class="button is-primary" href="/upload">Attack with Page</a>
 	</div>
 </section>
 </div>
 
-{% endif %}		
+{% endif %}
 
 {% endblock %}

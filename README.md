@@ -3,8 +3,10 @@ Bodhi is a playground focused on learning the exploitation of client-side web vu
 
 The playground is a CTF style application where the objective is to read the flag available for each vulnerablity. Main vulnerability page has detailed information about scenarios & test accounts to be used.
 
-## Demo
-Demo video is available at https://youtu.be/8LN56u8RtEY
+## Videos
+- GET CSRF exploitation with XSS: https://www.youtube.com/watch?v=8LN56u8RtEY
+- GET CSRF exploitation with Attacker Site: https://www.youtube.com/watch?v=x4g0H8rKS7M
+- Clickjacking exploitation: https://www.youtube.com/watch?v=LQF6-97b8Ys
 
 ## Setup Instructions
 ### Docker
@@ -37,6 +39,20 @@ $ pip install -r requirements.txt
 $ ./run.sh
 ```
 Browse to http://<your_machine_ip>
+
+## TODOs
+Following vulnerabilities will be added in future releases of Bodhi
+- CORS
+- Websocket
+- postMessage
+- WebWorker
+- localStorage
+- WebSQL
+- self-xss (drag-drop)
+- side-channel attack
+
+**If you want to contribute, please send PR**
+
 
 **Happy Learning !!**
 

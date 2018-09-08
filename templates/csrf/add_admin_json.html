@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
 {% if session['admin'] == 'yes' %}
 <div class="column">
 <section class="section">
@@ -29,7 +28,7 @@
          <div class="navbar-start">
             <a class="navbar-item " href="/home">Home</a>
             <a class="navbar-item " href="/send_message">Message Board</a>
-            <a class="navbar-item " href="/add_admin_demo">Vulnerable Form</a>
+            <a class="navbar-item " href="/add_admin">Vulnerable Form</a>
             <a class="navbar-item " href="/upload">Upload PoC</a>
          </div>
 
@@ -41,11 +40,48 @@
 
 {% endif %}	
 
-	<br>
-	<div class="column is-half">
+<script type="text/javascript">
+	function toJSONString( form ) {
+		var obj = {};
+		var elements = form.querySelectorAll( "input, select, textarea" );
+		for( var i = 0; i < elements.length; ++i ) {
+			var element = elements[i];
+			var name = element.name;
+			var value = element.value;
+
+			if( name ) {
+				obj[ name ] = value;
+			}
+		}
+
+		return JSON.stringify( obj );
+	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+    $("#formid").submit(function(event){
+        event.preventDefault();
+        formData = toJSONString(document.getElementById('formid'))
+        
+        $.post({
+          // type: "POST",
+          url: '/add_admin',
+          data: formData,
+          // success: function(){},
+          // dataType: "json",
+          contentType : "application/json"
+          // success: function()($("#main").append('<div class="notification is-success">User Created</div>'))
+        });
+    });
+});
+
+</script>
+
+    <br>
+	<div id="main" class="column is-half">
 	<h1 class="title">Add Admin user</h1>
-	<form method="POST" action="/add_admin">
-		{{ form.hidden_tag() }}
+	<form id="formid">
+		
 		<div class="field">
 			{{ form.username.label(class="label") }}
 			<p class="control is-expanded">
@@ -74,20 +110,7 @@
 				{{ form.password(class="input") }}
 			</p>
 		</div>
-		<div class="field">
-			{{ form.isAdmin.label(class="label") }}
-			<p class="control is-expanded">
-				
-
-				{% if form.isAdmin.errors %}
-					{% for error in form.isAdmin.errors %}
-						<p class="help is-danger">{{ error }}</p>
-					{% endfor %}
-				{% endif %}
-
-				{{ form.isAdmin(class="input") }}
-			</p>
-		</div>
+		<input type="hidden" name="isAdmin" value="yes">
 		<br>
 		{{ form.submit(class="button is-primary") }}
 	</form>

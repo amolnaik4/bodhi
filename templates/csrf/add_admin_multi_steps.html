@@ -28,7 +28,7 @@
          <div class="navbar-start">
             <a class="navbar-item " href="/home">Home</a>
             <a class="navbar-item " href="/send_message">Message Board</a>
-            <a class="navbar-item " href="/add_admin_demo">Vulnerable Form</a>
+            <a class="navbar-item " href="/add_admin">Vulnerable Form</a>
             <a class="navbar-item " href="/upload">Upload PoC</a>
          </div>
 
@@ -44,7 +44,7 @@
 	<div class="column is-half">
 	<h1 class="title">Add Admin user</h1>
 			{% if step == 'one' %}
-			<form method="POST" action="/add_admin_demo">
+			<form method="POST" action="/add_admin">
 
 				<div class="field">
 					<label class="label" for="username">Username</label>
@@ -62,9 +62,9 @@
 				<br>
 				<input type="submit" class="button is-primary" value="Next">
 			</form>
-			<div class="notification is-danger">{{ msg }}</div>
+			
 			{% elif step == "two" %}
-			<form method="POST" action="/add_admin_demo">
+			<form method="POST" action="/add_admin">
 				<div class="field">
 					<label class="label" for="selection">Choose Admin or not:</label>
                     <p class="control">
@@ -84,7 +84,6 @@
 				<input type="submit" class="button is-primary" value="Add Admin">
 				
 			</form>
-			<div class="notification is-danger">{{ msg }}</div>
 			{% elif step == "final" %}
 				<div class="notification is-success">{{ msg }}</div>
 			{% endif %}
