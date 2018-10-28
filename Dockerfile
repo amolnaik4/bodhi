@@ -1,15 +1,14 @@
-FROM alpine:latest
+FROM python:2.7.15-alpine
 
-
-RUN apk add --no-cache python \
-		python-dev \
-		py-pip \
-		chromium \ 
+RUN apk add --no-cache chromium \ 
 		chromium-chromedriver
 
-COPY . /bodhi_app
-WORKDIR /bodhi_app
+COPY ./src/requirements.txt /
+
 RUN pip install -r requirements.txt --no-cache-dir
+
+COPY ./src /bodhi_app
+WORKDIR /bodhi_app
 EXPOSE 80 8000
 ENTRYPOINT ["/bin/sh"]
 CMD ["run.sh"]
