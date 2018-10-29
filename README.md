@@ -1,5 +1,5 @@
 # Bodhi - Client-Side Vulnerability Playground
-Bodhi is a playground focused on learning the exploitation of client-side web vulnerabilities. The playground has vulnerable application & a bot program which simulates the real-world victim. An attacker will have knowledge of the vunerability and will send crafted payload which will be accessed by victim. The attacker need to complete objective by exploiting these vulnerabilities.
+Bodhi is a playground focused on learning the exploitation of client-side web vulnerabilities. The playground has a vulnerable application & a bot program which simulates the real-world victim (that being the USP of the project). An attacker having the  knowledge of the vunerability will send a crafted payload which will be accessed by the victim. The attacker needs to complete the objective by exploiting these vulnerabilities. Whatever the victim needs to do, for the exploit to work, would be simulated by the project. 
 
 The playground is a CTF style application where the objective is to read the flag available for each vulnerablity. Main vulnerability page has detailed information about scenarios & test accounts to be used.
 
@@ -55,4 +55,5 @@ Following vulnerabilities will be added in future releases of Bodhi
 
 
 **Happy Learning !!**
-
+**PRs and more than welcome**
+**If you like the project, feel free to join in for beers sometime.**
