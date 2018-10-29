@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="columns">
+<div class="column">
+<section class="section">
+	<h1 class="title">Search</h1>
+	<form method="GET" action="/search">
+		<div class="field">
+			<label class="label" for="query">Input Query</label>
+			<p class="control is-expanded">
+				<input class="input" id="query" name="query" type="text" value="">
+			</p>
+		</div>
+		<br>
+		<input type="submit" class="button is-primary" value="Search">
+	</form>
+</section>
+</div>
+</div>
+{% endblock %}

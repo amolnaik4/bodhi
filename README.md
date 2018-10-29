@@ -42,11 +42,11 @@ Browse to http://<your_machine_ip>
 
 ## TODOs
 Following vulnerabilities will be added in future releases of Bodhi
-- CORS
+- ~~CORS~~
 - Websocket
 - postMessage
 - WebWorker
-- localStorage
+- ~~localStorage~~
 - WebSQL
 - self-xss (drag-drop)
 - side-channel attack

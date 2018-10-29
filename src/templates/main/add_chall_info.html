@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="columns">
+<div class="column">
+<section class="section">
+	<h1 class="title">Add Challenge Info</h1>
+	<form method="POST" action="/add_chall_info">
+		{{ form.hidden_tag() }}
+		<div class="field">
+			{{ form.title.label(class="label") }}
+			<p class="control is-expanded">
+				{{ form.title(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.description.label(class="label") }}
+			<p class="control is-expanded">
+				{{ form.description(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.vuln_request.label(class="label") }}
+			<p class="control is-expanded">
+				{{ form.vuln_request(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.link.label(class="label") }}
+			<p class="control is-expanded">
+				{{ form.link(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.chall.label(class="label") }}
+			<p class="control is-expanded">
+				{{ form.chall(class="input") }}
+			</p>
+		</div>
+		<br>
+		{{ form.submit(class="button is-primary") }}
+	</form>
+</section>
+</div>
+</div>
+{% endblock %}

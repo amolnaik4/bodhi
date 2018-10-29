@@ -10,3 +10,4 @@ SQLAlchemy==1.2.11
 urllib3==1.23
 Werkzeug==0.14.1
 WTForms==2.2.1
+Flask-Cors==3.0.6

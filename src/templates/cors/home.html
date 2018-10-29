@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if session['admin'] == 'yes' %}
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/flag_file">Flag</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    <br>
+    <div class="content">
+		<h2>Hello Admin</h2>
+		<p>Welcome !!</p>
+	</div>
+</section>
+</div>	
+{% else %}
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/flag_file">Flag</a>
+            <a class="navbar-item " href="/upload3">Upload PoC</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    <br>
+	<div class="content">
+		<h2>Hello User</h2>
+		<p><strong>{{ chall_data.title }}</strong> vulnerability</p><br>
+        <h4>Objective:</h4>
+        <p>Exploit CORS mis-cofiguration to read the flag !</p><br>
+		<h4>Attack:</h4>	      	
+		<a class="button is-primary" href="/upload">Attack with Page</a>
+	</div>
+</section>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="columns">
+<div class="column">
+<section class="section">
+	<h1 class="title">Database table details</h1>
+	<form method="POST" action="/get_db">
+		{{ form.hidden_tag() }}
+		<div class="field">
+		   <label class="label" for="selection">Choose Table Name:</label>
+			<p class="control">
+			   <span class="select">
+			      <select name="table_name" id="selection">
+			         <option value="appusers">Users</option>
+			         <option value="chall_info">Chall_Info</option>
+			         <option value="flags">Flags</option>
+			      </select>
+			   </span>
+			</p>
+		</div>
+		<br>
+		{{ form.submit(class="button is-primary") }}
+	</form>
+	<br>
+	{% if data %}
+		{% for row in data %}
+			<table class="table is-striped">
+				<tbody>
+					<tr>
+						<td>{{ row }}</td>
+					</tr>
+				</tbody>
+			</table>
+		{% endfor %}
+	{% endif %}
+</section>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if session['admin'] == 'yes' %}
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/admin_messages">Messages</a>
+            <a class="navbar-item " href="/flag4">Flag</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    <br>
+    <div class="content">
+		<h2>Hello Admin</h2>
+		<p>Welcome !!</p>
+	</div>
+</section>
+</div>	
+{% else %}
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/send_message2">Message Board</a>
+            <a class="navbar-item " href="/flag4">Flag</a>
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    <br>
+	<div class="content">
+		<h2>Hello User</h2>
+		<p><strong>{{ chall_data.title }}</strong> vulnerability</p><br>
+        <h4>Objective:</h4>
+        <p>Exploit XSS vulnerability to read the flag of admin user saved in Web Storage !</p><br>
+		<h4>Attack:</h4>	      	
+		<a class="button is-primary" href="/send_message">Attack with XSS</a>
+	</div>
+</section>
+</div>
+{% endif %}
+
+<script type="text/javascript">
+    
+    {% if session['chall'] == 'webstor1' %}
+    window.localStorage.setItem('flag_data','{{flag_data}}');
+    {% elif session['chall'] == 'webstor2' %}
+    window.sessionStorage.setItem('flag_data','{{flag_data}}');
+    {% endif %}
+    
+</script>
+{% endblock %}

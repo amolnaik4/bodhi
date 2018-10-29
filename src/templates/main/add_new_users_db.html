@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="columns">
+<div class="column">
+<section class="section">
+	<h1 class="title">Add Users in New DB</h1>
+	<form method="POST" action="/add_new_users_db">
+		{{ form.hidden_tag() }}
+		<div class="field">
+			{{ form.username.label(class="label") }}
+			<p class="control is-expanded">
+				{{ form.username(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.password.label(class="label") }}
+			<p class="control is-expanded">
+				{{ form.password(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.isAdmin.label(class="label") }}
+			<p class="control is-expanded">
+				{{ form.isAdmin(class="input") }}
+			</p>
+		</div>
+		<div class="field">
+			{{ form.chall.label(class="label") }}
+			<p class="control is-expanded">
+				{{ form.chall(class="input") }}
+			</p>
+		</div>
+		<br>
+		{{ form.submit(class="button is-primary") }}
+	</form>
+</section>
+</div>
+</div>
+
+{% endblock %}

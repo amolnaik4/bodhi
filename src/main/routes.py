@@ -1,6 +1,6 @@
 # main folder - routes
 from flask import render_template, request, session, redirect, url_for, Blueprint
-from main.forms import LoginForm, AddChallInfo, AddUsersDBNew, AddFlag, ReadDB
+from main.forms import LoginForm
 import os, re
 from models import db, ChallInfo, User2, Flag
 
@@ -9,7 +9,6 @@ main = Blueprint('main', __name__)
 
 file_path = os.path.dirname(os.path.abspath(__file__))
 project_dir = file_path +"/../"
-print project_dir
 
 @main.route("/")
 def index():
@@ -34,7 +33,6 @@ def bot():
 
 @main.route("/home")
 def home():
-	print session['chall']
 	if 'username' in session:
 		chall = session['chall']
 		chall_data = ChallInfo.query.filter_by(chall=chall).first()
@@ -42,6 +40,10 @@ def home():
 			return render_template("csrf/home.html",chall_data=chall_data)
 		elif re.match(r"click[0-9]", chall):
 			return render_template("clickjack/home.html",chall_data=chall_data)
+		elif re.match(r"cors[0-9]", chall):
+			return render_template("cors/home.html",chall_data=chall_data)
+		elif re.match(r"webstor[0-9]", chall):
+			return render_template("webstorage/home.html",chall_data=chall_data)
 	else:
 		return redirect(url_for("main.login"))
 

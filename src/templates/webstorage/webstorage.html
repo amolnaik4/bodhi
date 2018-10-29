@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="column">
+<section class="section">
+	<div class="content">
+		<h2>Web Storage</h2><br>
+		<p>Web Storage or Offline Storage is a mechanism to store data as key/value pairs tied to a domain and enforced by the same origin policy (SOP). There are two objects, localStorage that is persistent and is intended to survive browser/system reboots and sessionStorage that is temporary and will only exists until the window or tab is closed.</p>
+		<p>On average browsers allow to store in this storage around 5MB per domain, that compared to the 4KB of cookies is a big difference, but the key difference from the security perspective is that the data stored in these two objects is kept in the client and never sent to the server, this also improves network performance as data do not need to travel over the wire back and forth. For more information, please refer <a href="https://www.owasp.org/index.php/Test_Local_Storage_(OTG-CLIENT-012)">this</a>.</p>
+
+		<h3>Scenario</h3><br>
+		<p>The application has 2 roles i.e Admin user & normal user. Admin user can read flag which is being stored in Web Storage. Normal user will see a dummy flag.</p>
+
+		<p>The objective is to get the flag from Web Storage of Admin User's browser.</p>
+
+		<h3>Exploitation</h3><br>
+		<p>The application provides functionality to send messages to Admin user. The page where these messages are rendered, is vulnerable to Stored Cross-Site Scripting (XSS) vulnerability. Admin user will always reading the messages sent to him while logged in into the application.</p>
+		
+
+		<h3>Test Accounts</h3>
+		<pre>
+	    localStorage            - testuser10/testpass10
+	    sessionStorage          - testuser11/testpass11</pre>
+
+		
+	</div>
+</section>
+</div>
+
+{% endblock %}

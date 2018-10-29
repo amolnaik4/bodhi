@@ -24,13 +24,20 @@ app.secret_key = "afb46675-3f80-41df-8420-20ec9a6a13f6"
 from main.routes import main
 from csrf.routes import csrf
 from clickjack.routes import clickjack
+from cors.routes import cors
+from webstorage.routes import webstorage
 
 
 app.register_blueprint(main)
 app.register_blueprint(csrf)
 app.register_blueprint(clickjack)
+app.register_blueprint(cors)
+app.register_blueprint(webstorage)
 
 
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
 
 
 @main.errorhandler(500)

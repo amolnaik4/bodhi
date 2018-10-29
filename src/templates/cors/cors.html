@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="column">
+<section class="section">
+	<div class="content">
+		<h2>Cross Origin Resource Sharing (CORS)</h2><br>
+		<p>Cross Origin Resource Sharing or CORS is a mechanism that enables a web browser to perform "cross-domain" requests using the XMLHttpRequest L2 API in a controlled manner. In the past, the XMLHttpRequest L1 API only allowed requests to be sent within the same origin as it was restricted by the same origin policy.</p>
+		<p>Cross-Origin requests have an Origin header, that identifies the domain initiating the request and is always sent to the server. CORS defines the protocol to use between a web browser and a server to determine whether a cross-origin request is allowed. In order to accomplish this goal, there are a few HTTP headers involved in this process, that are supported by all major browsers and we will cover below including: Origin, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, Access-Control-Allow-Methods, Access-Control-Allow-Headers. For more information, please refer <a href="https://www.owasp.org/index.php/Test_Cross_Origin_Resource_Sharing_(OTG-CLIENT-007)">this</a>.</p>
+
+		<h3>Scenario</h3><br>
+		<p>The application has 2 roles i.e Admin user & normal user. Admin user can read flag using API. This API is vulnerable to CORS mis-configuration. Normal user can see the dummy flag with the same API.</p>
+
+		<p>The objective is to expoit CORS mis-configuration to get valid flag.</p>
+
+		<h3>Exploitation</h3><br>
+		<p>Create a CORS PoC and upload to the attacker server (in this case, another server running on post 8000) using "upload" page. Admin user will visit PoC page while authenticated to the application. You can use attacker server logs to capture the flag.</p>
+		
+
+		<h3>Test Accounts</h3>
+		<pre>
+	Simple CORS  - testuser9/testpass9</pre>
+
+		
+	</div>
+</section>
+</div>
+
+{% endblock %}

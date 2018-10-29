@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="column">
+<section class="section">
+	<nav class="navbar ">
+		<div class="navbar-menu">
+         <div class="navbar-start">
+            <a class="navbar-item " href="/home">Home</a>
+            <a class="navbar-item " href="/flag_file">Flag</a>
+            {% if session['admin'] == 'no' %}
+            <a class="navbar-item " href="/upload3">Upload PoC</a>
+            {% endif %}
+         </div>
+
+         <div class="navbar-end">
+            <a class="navbar-item" href="/logout" >Logout</a>
+         </div>
+      </div>
+    </nav>
+    <br>
+	<div class="content">
+		<h1>Flag</h1>
+		<p>Here is your flag:</p>
+		<br>
+            <pre id="flg"></pre>
+	</div>
+</section>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.get("/flag3")
+        .done(function(data){
+            $("#flg").html(data['flag']);
+        })
+        .fail(function(query){
+            $("#flg").html("THIS_IS_DUMMY_FLAG")
+        });
+    });
+</script>
+{% endblock %}

@@ -2,7 +2,7 @@
 from selenium import webdriver
 import os, time, threading
 
-creds = [
+creds_csrf = [
 	['admin1','adminpass1','csrf1'],
 	['admin2','adminpass2','csrf2'],
 	['admin3','adminpass3','csrf3'],
@@ -11,9 +11,13 @@ creds = [
 	['admin6','adminpass6','csrf6']
 ]
 
-creds2 = [
-	['admin7','adminpass7','click1'],
-	['admin8','adminpass8','click2']
+creds_cors = [
+	['admin9','adminpass9','cors1']
+]
+
+creds_webstor = [
+	['admin10','adminpass10','webstor1'],
+	['admin11','adminpass11','webstor2']
 ]
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
@@ -65,7 +69,7 @@ def open_pages(username, password, chall):
 	for link in external_links:
 		driver.get(attacker_domain+link)
 		content = driver.find_element_by_tag_name('body').get_attribute('innerHTML')
-		print content
+		# print content
 
 	open(chall_file,'w').close()
 	driver.get(victim_domain+'/logout')
@@ -136,32 +140,35 @@ def click_double():
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
-chrome_options.binary_location = "/usr/bin/chromium-browser"
 driver = webdriver.Chrome('/usr/bin/chromedriver',chrome_options=chrome_options, service_args=['--verbose', '--log-path=/tmp/chromedriver.log'])
 
 
 def read_page_bot():
-	print "[*] Admin is reading messages"
-	for cred in creds:
+	for cred in creds_csrf:
 		read_messages(cred[0],cred[1],cred[2])
-	print "[*] Admin is paused"
+	for cred in creds_webstor:
+		read_messages(cred[0],cred[1],cred[2])
 
 
 def open_page_bot():
-	print "[*] Admin is opening pages"
-	for cred in creds:
+	for cred in creds_csrf:
 		open_pages(cred[0],cred[1],cred[2])
-	print "[*] Admin is sleeping"
+	for cred in creds_cors:
+		open_pages(cred[0],cred[1],cred[2])
 
 
 def start_bot():
+	print "[*] Admin is active and reading messages"
 	threading.Timer(60, start_bot).start()
+
 	read_page_bot()
-	time.sleep(3)
+	time.sleep(2)
 	open_page_bot()
-	time.sleep(3)
+	time.sleep(2)
 	click_single()
-	time.sleep(3)
+	time.sleep(2)
 	click_double()
+	print "[*] Admin is sleeping, will resume in 1 minute"
+
 
 start_bot()
