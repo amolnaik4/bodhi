@@ -15,7 +15,7 @@ There is a docker available for this. Follow below commands to set it up:
 $ docker pull amolnaik4/bodhi_app
 $ docker run -p 80:80 -p 8000:8000 amolnaik4/bodhi_app
 ```
-Once docker is running, access the application at http://<your_machine_ip>
+Once docker is running, access the application at http://MACHINE_IP
 ### Using Code
 **The code is used to build Docker. It is higly recommended to use Docker. This code can be used as reference. If you want to build it from source, you will need to change code to be able to work.**
 
@@ -38,7 +38,7 @@ $ cd bodhi
 $ pip install -r requirements.txt
 $ ./run.sh
 ```
-Browse to http://<your_machine_ip>
+Browse to http://MACHINE_IP
 
 ## TODOs
 Following vulnerabilities will be added in future releases of Bodhi
